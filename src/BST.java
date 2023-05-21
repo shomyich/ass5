@@ -58,6 +58,15 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
+    private Node deleteMin(Node node) {
+        if (node.left == null) {
+            return node.right;
+        }
+        node.left = deleteMin(node.left);
+        return node;
+    }
+
+
 
     public void delete(K key) {
     }
