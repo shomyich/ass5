@@ -61,6 +61,7 @@ public class BST<K extends Comparable<K>, V> {
         }
         return node;
     }
+
     private Node deleteMin(Node node) {
         if (node.left == null) {
             return node.right;
@@ -68,7 +69,6 @@ public class BST<K extends Comparable<K>, V> {
         node.left = deleteMin(node.left);
         return node;
     }
-
 
     public void delete(K key) {
         root = delete(root, key);
@@ -109,9 +109,24 @@ public class BST<K extends Comparable<K>, V> {
         if (node == null) {
             return;
         }
-
         inorderTraversal(node.left, keys);
         keys.add(node.key);
         inorderTraversal(node.right, keys);
     }
+
+
+    public int height() {
+        return height(root);
     }
+
+    private int height(Node node) {
+        if (node == null) {
+            return -1;
+        }
+
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}
